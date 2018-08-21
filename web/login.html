@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <title>Login Page</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="cleanBlog/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="cleanBlog/css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="cleanBlog/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- jQuery -->
+    <script src="cleanBlog/vendor/jquery/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax ({
+            url: "mosaic",
+            success: function(data){
+
+                $("#mosaicURL").attr("href",data)
+
+            }
+        })
+    })
+    </script>
+</head>
+
+<body>
+
+<header class="intro-header" style="background-image: url('cleanBlog/img/spotify.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="text-center">
+                <h1>Login in with your spotify credentials</h1>
+                <br>
+                <a id="mosaicURL" href="#">
+                    <button type="button" class="btn btn-success">Login</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+<script src="cleanBlog/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="cleanBlog/js/jqBootstrapValidation.js"></script>
+<script src="cleanBlog/js/contact_me.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="cleanBlog/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

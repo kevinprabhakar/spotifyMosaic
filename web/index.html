@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify Mosaic</title>
+
+    <script type="text/javascript" src="cleanBlog/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" src="mosaic.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url("http://grozav.com/plugins/bootslider/img/slide-3.jpg");
+            background-size: cover;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function getRandomInt(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+        }
+
+        var ImgList = []
+        var trackLength = 0
+        var index = 0
+        var numPics = 15
+
+
+        $(document).ready(function(){
+            $.ajax ({
+                url: "mosaic",
+                success: function(data){
+                    var trackList = JSON.parse(data)
+                    trackLength = trackList.length
+                    for (i = 0; i < trackLength; i++){
+                        var checker = ((((trackList[i]||{}).track||{}).album||{}).images[1]||{}).url
+                        if ((checker)){
+                            if ((trackList[i].track.album.images[1].height > 290) && (trackList[i].track.album.images[1].width > 290)){
+                                ImgList.push(trackList[i].track.album.images[1].url)
+                            }
+                        }
+
+                    }
+                    for (i = 1;i <= numPics; i++){
+                        idName = "#img" + i.toString()
+                        $(idName).attr("src", ImgList[index])
+                        index += 1
+                    }
+                }
+            })
+
+            window.setInterval(function(){
+                imgNum = getRandomInt(1,numPics)
+                idName = "#img" + imgNum.toString()
+                $(idName).attr("src", ImgList[index])
+                index = index + 1
+                if (index == trackLength){
+                    index = 0
+                }
+            }, 1000)
+        })
+    </script>
+</head>
+    <body>
+        <div class="row" align="center" style="margin: 75px">
+            <a href="#"><img src="" id="img1"></a>
+            <a href="#"><img src="" id="img2"></a>
+            <a href="#"><img src="" id="img3"></a>
+            <a href="#"><img src="" id="img4"></a>
+            <a href="#"><img src="" id="img5"></a>
+            <a href="#"><img src="" id="img6"></a>
+            <a href="#"><img src="" id="img7"></a>
+            <a href="#"><img src="" id="img8"></a>
+            <a href="#"><img src="" id="img9"></a>
+            <a href="#"><img src="" id="img10"></a>
+            <a href="#"><img src="" id="img11"></a>
+            <a href="#"><img src="" id="img12"></a>
+            <a href="#"><img src="" id="img13"></a>
+            <a href="#"><img src="" id="img14"></a>
+            <a href="#"><img src="" id="img15"></a>
+        </div>
+
+    </body>
+</html>
